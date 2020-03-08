@@ -1,3 +1,9 @@
 {
-  "projectId": "u98721"
+  "projectId": "u98721",
+  "pageLoadTimeout": 60000,
+  "env": {
+    "baseurl": "http://stg.workoncue.com/login?locale=zh_cn",
+    "email": "297434556@qq.com",
+    "password": "123456"
+  },
 }
