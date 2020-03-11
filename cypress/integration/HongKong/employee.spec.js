@@ -81,15 +81,15 @@ describe("香港版-员工栏用例集", function() {
       });
 
     //点击部门选择框
-    cy.route("**/admin/department?**").as("getDepartment");
-    cy.get(
-      "#departmentId > .ant-select-selection > .ant-select-arrow > .ant-select-arrow-icon > svg"
-    ).click();
-    cy.wait("@getDepartment");
+    // cy.route("**/admin/department?**").as("getDepartment");
+    // cy.get(
+    //   "#departmentId > .ant-select-selection > .ant-select-arrow > .ant-select-arrow-icon > svg"
+    // ).click();
+    // cy.wait("@getDepartment");
     //选择第一个部门
-    cy.get("div.field-name__departmentId>div>div>ul>li:nth-child(1)", {
-      timeout: 5000
-    }).click();
+    // cy.get("div.field-name__departmentId>div>div>ul>li:nth-child(1)", {
+    //   timeout: 5000
+    // }).click();
 
     //点击成本中心选择框
     // cy.route("**/admin/biz_cost_center/page?**").as("getCenterPage");
@@ -122,9 +122,19 @@ describe("香港版-员工栏用例集", function() {
     cy.get("div.field-name__payrollRegulationId>div>ul>li:nth-child(1)", {
       timeout: 5000
     }).click();
-
+    cy.route('POST','**/admin/employee**').as('saveEmployee');
+    
     //点击保存
     cy.get(".toolbar > :nth-child(1)").click();
+    cy.wait('@saveEmployee').its('status').should('eq', 200);
+
+    //解雇员工
+    cy.route('POST','**/admin/employee/operationEmployee**').as('fire')
+    cy.get('.ant-card-body > .ant-btn').click();
+    cy.get('#lastWorkingDate > div > .ant-calendar-picker-input').click();
+    cy.get(' tr.ant-calendar-current-week.ant-calendar-active-week > td:nth-child(3) > div').click();
+    cy.get('.ant-modal-footer > div > .ant-btn-primary').click();
+    cy.wait('@fire').its('status').should('eq', 200);
 
     cy.route('**admin/employee**').as('deleteEmployee');
     //新增员工之后选择删除

@@ -5,6 +5,10 @@
   "env": {
     "baseurl": "http://stg.workoncue.com/login?locale=zh_cn",
     "email": "297434556@qq.com",
-    "password": "123456"
+    "password": "123456",
+    "devurl-innerland": "http://gigaworkdev.tpddns.cn:3003",
+    "base": "http://192.168.0.2:3003/",
+    "devapi": "http://192.168.0.2:3003/api"
+
   }
 }

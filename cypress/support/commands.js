@@ -56,3 +56,38 @@ Cypress.Commands.add('login', () => {
       JSON.stringify(tenantStr))
   })
 })
+
+
+Cypress.Commands.add('innerLogin', () => {
+  cy.request({
+    url: Cypress.env('devapi')+'/auth/oauth/token',
+    method: 'POST',
+    form: true,
+    headers: {
+      Authorization: 'Basic Z3dlLWFwcDptYWx0',
+      'Content-Type': 'application/x-www-form-urlencoded',
+    },
+    body: {
+      grant_type: 'password',
+      password: 123456,
+      scope: 'app',
+      username: '297434556@qq.com',
+    },
+  }).then((response) => {
+    const time = new Date().getTime()
+    const tokenStr = {
+      'dataType': 'string',
+      'content': response.body.access_token,
+      'datetime': time,
+    }
+    const tenantStr = {
+      'dataType': 'string',
+      'content': response.body.tenant_id,
+      'datetime': time,
+    }
+    window.localStorage.setItem('malt-token', JSON.stringify(tokenStr))
+
+    window.localStorage.setItem('tenant_id',
+      JSON.stringify(tenantStr))
+  })
+})

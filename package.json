@@ -22,6 +22,7 @@
     "colon:names": "colon-names",
     "e2e": "cypress run",
     "e2e:chrome": "cypress run  -s  **/HongKong/*.spec.js --record --key fb9888ae-6286-4232-8682-1cf26e98ac78",
+    "innerland:run": "cypress run  -s  **/Innerland/*.spec.js --record --key fb9888ae-6286-4232-8682-1cf26e98ac78",
     "e2e:record": "cypress run --record",
     "e2e:record:edge": "cypress run --record --browser edge",
     "e2e:record:parallel": "cypress run --record --parallel",
