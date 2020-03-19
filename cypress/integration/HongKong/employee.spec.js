@@ -31,12 +31,12 @@ describe("香港版-员工栏用例集", function() {
     );
 
     //点击假期规则选择框
-    cy.get("#regularType > .ant-select-selection", { timeout: 5000 }).click();
-    cy.route("**/leave/leave_regulation/**").as("getLeavePage");
-    cy.wait("@getLeavePage");
+    // cy.get("#regularType > .ant-select-selection", { timeout: 5000 }).click();
+    // cy.route("**/leave/leave_regulation/**").as("getLeavePage");
+    // cy.wait("@getLeavePage");
 
     //选择第一种假期规则
-    cy.get("div.field-name__regularType>div>div>ul>li:nth-child(1)").click();
+    // cy.get("div.field-name__regularType>div>div>ul>li:nth-child(1)").click();
 
     //选择入职日期
     cy.get("#entryDate > div > input").click();

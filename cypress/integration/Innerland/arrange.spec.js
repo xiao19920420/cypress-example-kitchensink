@@ -105,7 +105,7 @@ describe("内地版-排班栏用例集", function() {
     cy.wait('@queryError').its('status').should('eq', 200);
   });
 
-  it.only("进行考勤汇总计算", function() {
+  it("进行考勤汇总计算", function() {
     cy.log('跳转考勤汇总计算链接');
     
     cy.server();

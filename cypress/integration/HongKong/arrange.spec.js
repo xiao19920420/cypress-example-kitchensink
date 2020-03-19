@@ -109,12 +109,13 @@ describe("香港版-排班栏用例集", function() {
     cy.log('跳转考勤汇总计算链接');
     
     cy.server();
-    cy.visit('http://stg.workoncue.com/attendance/attendance_status')
     cy.route('**/admin/bizAttendCalculation**').as('getbiz')
+
+    cy.visit('http://stg.workoncue.com/attendance/overview')
 
     
     //点击考勤汇总
-    cy.get("ul > li.ant-menu-submenu > ul > li:nth-child(1) > div").click();
+    // cy.get("ul > li.ant-menu-submenu > ul > li:nth-child(1) > div").click();
     cy.wait('@getbiz')
 
     cy.log('点击计算按钮')
