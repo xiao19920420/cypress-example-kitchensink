@@ -19,12 +19,16 @@ describe("香港版-保险福利栏用例集", function() {
     cy.wait('@getInsurance')
 
     //选择employ li
-    cy.contains('employee,li').dblclick()
+    cy.get('div.ant-table-body > table > tbody > tr:nth-child(1)').dblclick()
+    // cy.contains('employee,li').dblclick()
 
-    //判断供款编号上有内容展示
-    cy.get('#paymentNumber').then((values) => {
+    //判断参加日期上有内容展示
+    cy.get('#joinDate > div > .ant-calendar-picker-input').then((values) => {
       expect(values.html).not.to.be.empty
     })
+    // cy.get('#paymentNumber').then((values) => {
+    //   expect(values.html).not.to.be.empty
+    // })
 
   });
 });

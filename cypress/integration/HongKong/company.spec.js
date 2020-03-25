@@ -37,7 +37,8 @@ describe('香港版-公司栏用例集', function() {
       //输入商业登记号,先选中全部再输入内容
       cy.get('#businessRegistrationNumber').type('{selectall}').type(12345678)
       //点击保存按钮
-      cy.get(':nth-child(4) > .ant-btn').click();
+      cy.contains('保 存').click()
+      // cy.get(':nth-child(4) > .ant-btn').click();
       cy.wait('@save').its('status').should('eq', 200);
 
     })
