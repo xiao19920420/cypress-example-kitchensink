@@ -116,7 +116,7 @@ describe("内地版-员工栏用例集", function() {
     // ).click();
 
     //点击薪酬规则选择框
-    cy.route('GET',"**api/payroll/payroll_regulation/list**").as("getPayroll")
+    cy.route('GET',"**/payroll/payroll_regulation/list**").as("getPayroll")
 
     cy.get("#payrollRegulationId > .ant-select-selection").click();
     cy.wait('@getPayroll');
@@ -140,7 +140,7 @@ describe("内地版-员工栏用例集", function() {
     cy.get('.ant-modal-footer > div > .ant-btn-primary').click();
     cy.wait('@fire').its('status').should('eq', 200);
 
-    cy.route('DELETE','**/api/admin/employee/**').as('deleteEmployee');
+    cy.route('DELETE','**/admin/employee/**').as('deleteEmployee');
     //新增员工之后选择删除
     cy.get('.toolbar > .ant-btn-default').click();
 

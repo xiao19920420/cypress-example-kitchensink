@@ -5,6 +5,13 @@ describe("内地版-排班栏用例集", function() {
     cy.innerLogin()
   });
 
+  it("确认当前是内地租户", function() {
+    cy.visit(Cypress.env('base')+'schedule');
+
+    cy.get('.current-company').click()
+    cy.contains('内地专用').dblclick()
+  });
+
   it("新增排班", function() {
     this.retries(2);
 
@@ -94,7 +101,7 @@ describe("内地版-排班栏用例集", function() {
     
     cy.route('**/admin/bizMobileCard?q=&current=1&size=10**').as('queryNormal')
     //跳转打卡数据界面
-    cy.visit('http://192.168.0.2:3003/attendance/clock_data')
+    cy.visit(Cypress.env('base')+'attendance/clock_data')
     
     cy.wait('@queryNormal').its('status').should('eq', 200);
     // cy.route('**&mobileCardStatusFilter=**').as('queryError');

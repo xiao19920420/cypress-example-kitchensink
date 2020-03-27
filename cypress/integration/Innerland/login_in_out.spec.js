@@ -2,7 +2,7 @@
 
 describe("内地版-登录登出用例", function() {
   beforeEach(() => {
-    cy.visit(Cypress.env('devurl-innerland'))
+    cy.visit(Cypress.env('baseurl'))
   });
 
   it("登录", function () {

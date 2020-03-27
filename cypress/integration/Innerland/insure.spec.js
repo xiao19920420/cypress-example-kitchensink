@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-describe("内地版-保险福利栏用例集", function() {
+describe.skip("内地版-保险福利栏用例集", function() {
   beforeEach(() => {
     cy.innerLogin()
   });

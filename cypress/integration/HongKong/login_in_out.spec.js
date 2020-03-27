@@ -1,4 +1,4 @@
-describe("香港版-登录登出用例集", function () {
+describe.skip("香港版-登录登出用例集", function () {
     beforeEach(() => {
         cy.visit(Cypress.env('baseurl'))
     })
@@ -13,6 +13,7 @@ describe("香港版-登录登出用例集", function () {
     });
 
     it("登出", function () {
+        cy.pause()
         //输入邮箱
         cy.get("#username").type(Cypress.env("email"));
         //输入密码

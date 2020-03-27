@@ -60,7 +60,7 @@ Cypress.Commands.add('login', () => {
 
 Cypress.Commands.add('innerLogin', () => {
   cy.request({
-    url: Cypress.env('devapi')+'/auth/oauth/token',
+    url: 'http://ec2-52-220-188-0.ap-southeast-1.compute.amazonaws.com:8080/auth/oauth/token',
     method: 'POST',
     form: true,
     headers: {
@@ -71,7 +71,7 @@ Cypress.Commands.add('innerLogin', () => {
       grant_type: 'password',
       password: 123456,
       scope: 'app',
-      username: '297434556@qq.com',
+      username: 'lish@myhr100.com',
     },
   }).then((response) => {
     const time = new Date().getTime()
@@ -90,4 +90,5 @@ Cypress.Commands.add('innerLogin', () => {
     window.localStorage.setItem('tenant_id',
       JSON.stringify(tenantStr))
   })
+  
 })

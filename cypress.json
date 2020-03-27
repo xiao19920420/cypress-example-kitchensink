@@ -2,13 +2,15 @@
   "projectId": "u98721",
   "pageLoadTimeout": 60000,
   "defaultCommandTimeout":60000,
+  "chromeWebSecurity": false,
   "env": {
     "baseurl": "http://stg.workoncue.com/login?locale=zh_cn",
     "email": "297434556@qq.com",
     "password": "123456",
     "devurl-innerland": "http://gigaworkdev.tpddns.cn:3003",
-    "base": "http://192.168.0.2:3003/",
-    "devapi": "http://192.168.0.2:3003/api"
+    "base": "http://stg.workoncue.com/",
+    "devapi": "http://ec2-52-220-188-0.ap-southeast-1.compute.amazonaws.com:8080",
+    "email_inner": "lish@myhr100.com"
 
   }
 }

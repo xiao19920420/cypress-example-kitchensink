@@ -61,6 +61,20 @@ describe('香港版-薪酬栏用例集', function () {
     cy.wait('@payroll_detail').its('status').should('eq', 200)
 
     // cy.get('.ant-btn-primary').click()
+    cy.contains('上一步').click()
+    cy.wait('@payroll_detail').its('status').should('eq', 200)
+
+    cy.contains('上一步').click()
+    cy.wait('@payroll_detail').its('status').should('eq', 200)
+
+    //点击删除按钮
+    cy.get('.toolbar > .ant-btn-default').click()
+    cy.route('DELETE','**/payroll/payroll_plan/**').as('delete_payroll')
+
+    //点击确认按钮
+    cy.get('.action-wrapper > .ant-btn-primary').click()
+    cy.wait('@delete_payroll').its('status').should('eq', 200)
+
 
   })
 })

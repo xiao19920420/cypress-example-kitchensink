@@ -12,11 +12,6 @@ describe('内地版-公司栏用例集', function() {
       cy.route('**/admin/subscriberInfo/getInfo**').as('getCompany')
       cy.visit(Cypress.env('base')+'settings/company')
       cy.wait('@getCompany')
-      // //点击公司栏
-      // cy.get(':nth-child(2) > .ant-menu-submenu-title > .menu-content > .menu-content__title').click()
-      // //点击公司tab
-      // cy.get('.ant-menu-submenu-open > .ant-menu > :nth-child(1) > .menu-content > .menu-content__title').click()
-      // cy.wait(1000)
 
       cy.route('POST', "**/admin/file/**").as("upload");
       const fileName = 'my_logo.jpg';
@@ -29,15 +24,16 @@ describe('内地版-公司栏用例集', function() {
           mimeType: 'image/jpg'
         });
       });
-
+      
       // 确认上传接口返回内容
       cy.wait('@upload').its('status').should('eq', 200);
 
       cy.route('PUT', "**/admin/tenants**").as("save");
       //输入商业登记号,先选中全部再输入内容
       cy.get('#businessRegistrationNumber').type('{selectall}').type(12345678)
+
       //点击保存按钮
-      cy.get(':nth-child(4) > .ant-btn').click();
+      cy.contains('保 存').click()
       cy.wait('@save').its('status').should('eq', 200);
 
     })
@@ -65,7 +61,6 @@ describe('内地版-公司栏用例集', function() {
       cy.server()
       cy.route('**admin/position?q=&**').as('getPosition')
       cy.visit(Cypress.env('base')+'position')
-
     
       //点击新增职位
       cy.get('.toolbar > .ant-btn').click()
@@ -73,6 +68,7 @@ describe('内地版-公司栏用例集', function() {
       cy.get('#name').type("新测试" + Math.floor(Math.random() * 10000 + 1) + "岗位")
       //点击保存
       cy.route('POST', '**/admin/position**').as('savePosition')
+
       cy.get('div:nth-child(2) > button.ant-btn.ant-btn-primary').click()
       cy.wait('@savePosition').its('status').should('eq', 200);
     })
