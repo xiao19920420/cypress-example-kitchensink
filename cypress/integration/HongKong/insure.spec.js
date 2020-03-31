@@ -19,7 +19,9 @@ describe("香港版-保险福利栏用例集", function() {
     cy.wait('@getInsurance')
 
     //选择employ li
+    cy.wait(1000)//等待前端数据渲染
     cy.get('div.ant-table-body > table > tbody > tr:nth-child(1)').dblclick()
+    cy.wait('@getInsurance')
     // cy.contains('employee,li').dblclick()
 
     //判断参加日期上有内容展示

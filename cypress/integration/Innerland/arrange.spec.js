@@ -39,13 +39,14 @@ describe("内地版-排班栏用例集", function() {
     // ).click();
 
     
+    cy.wait(1000)//等待前端数据渲染
     cy.get(
-      "div.ant-col-21.right-bottom > div > div > div:nth-child(1) > div:nth-child(2) "
+      "div.ant-col-21.right-bottom > div > div > div:nth-child(1) > div:nth-child(1) "
     ).then($btn => {
       if ($btn.children().hasClass("schedule__add")) {
         //点击新增排班
         cy.get(
-          "div > div.ant-row.schedule__content > div > div > div:nth-child(2) > div.ant-col-21.right-bottom > div > div > div:nth-child(1) > div:nth-child(2) > div"
+          "div > div > div:nth-child(1) > div:nth-child(1) > div.schedule__add"
         ).click();
         cy.get("#shiftIn > input").type("09:00");
         cy.get("#shiftOff > input").type("18:00");

@@ -19,8 +19,9 @@ describe.skip("内地版-保险福利栏用例集", function() {
     cy.wait('@getInsurance')
 
     //选择第一个档案
+    cy.wait(1000)//等待前端数据渲染
     cy.get('div.ant-table-body > table > tbody > tr:nth-child(1)').dblclick();
-    // cy.contains('employee,li').dblclick()
+    cy.wait('@getInsurance')
 
     //判断供款编号上有内容展示
     cy.get('#paymentNumber').then((values) => {
