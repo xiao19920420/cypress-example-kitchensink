@@ -106,9 +106,9 @@ describe("香港版-排班栏用例集", function() {
   });
 
   it("进行考勤汇总计算", function() {
-    cy.log('跳转考勤汇总计算链接');
+    cy.log('跳转考勤汇总计算链接')
     
-    cy.server();
+    cy.server()
     cy.route('**/admin/bizAttendCalculation**').as('getbiz')
 
     cy.visit('http://stg.workoncue.com/attendance/overview')
