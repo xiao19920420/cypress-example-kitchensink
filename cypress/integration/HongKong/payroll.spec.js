@@ -21,13 +21,14 @@ describe('香港版-薪酬栏用例集', function () {
     cy.wait('@payroll_choose')
 
     //选择第一种薪酬规则
-    cy.get('div.field-name__payrollRegulationId > div >ul >li:nth-child(2)').click()
+    cy.get('div.field-name__payrollRegulationId > div >ul >li:nth-child(1)').click()
 
     //点击支付日期选择框
     cy.get('#payrollDate > div > .ant-calendar-picker-input').click()
 
     //选择支付日期
     cy.get('tr:nth-child(4) > td:nth-child(3)').click()
+
     //等待前端渲染数据
     cy.wait(1000)
     cy.route('**/payroll/payroll_plan/**').as('payroll_detail')
