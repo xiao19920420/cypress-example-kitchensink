@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-describe('内地版-基础切换用例集', function () {
+describe('香港版-切换用例集', function () {
     beforeEach(() => {
         cy.innerLogin()
     })
@@ -17,14 +17,14 @@ describe('内地版-基础切换用例集', function () {
                 grant_type: 'password',
                 password: 123456,
                 scope: 'app',
-                username: 'lish@myhr100.com',
+                username: '297434556@qq.com',
             }
         }).then((response) => {
 
             var token = response.body.access_token
             var tenant_id = response.body.tenant_id
             cy.request({
-                url: Cypress.env('devapi') + '/admin/tenants/switch/16827cc9c56231793f0fcb29d2a65e7b',
+                url: Cypress.env('devapi') + '/admin/tenants/switch/0031b79afddb2ab5268349d7f82f0065',
                 method: 'GET',
                 // form:true,
                 headers: {
