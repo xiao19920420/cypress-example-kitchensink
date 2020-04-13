@@ -5,12 +5,6 @@ describe("内地版-排班栏用例集", function() {
     cy.innerLogin()
   });
 
-  it("确认当前是内地租户", function() {
-    cy.visit(Cypress.env('base')+'schedule');
-
-    cy.get('.current-company').click()
-    cy.contains('内地专用').dblclick()
-  });
 
   it("新增排班", function() {
     this.retries(2);
@@ -74,7 +68,7 @@ describe("内地版-排班栏用例集", function() {
     // cy.get(
     //   ".ant-menu-submenu-open > .ant-menu > :nth-child(1) > .menu-content > .menu-content__title"
     // ).click();
-
+ 
     // //加载数据
     // cy.wait('@queryEmployee');
     

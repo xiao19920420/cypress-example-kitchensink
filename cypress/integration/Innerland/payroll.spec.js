@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-describe('香港版-薪酬栏用例集', function () {
+describe('内地版-薪酬栏用例集', function () {
   beforeEach(() => {
     cy.innerLogin()
   })
