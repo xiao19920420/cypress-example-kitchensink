@@ -13,7 +13,7 @@ describe("香港版-排班栏用例集", function() {
     //   ":nth-child(4) > .ant-menu-submenu-title > .menu-content > .menu-content__title",
     //   { timeout: 10000 }
     // ).click();
-   
+
     //通过链接跳转排班界面
     cy.server();
     cy.route('**/admin/**').as('queryEmployee');
@@ -22,7 +22,7 @@ describe("香港版-排班栏用例集", function() {
     //加载数据
     cy.wait('@queryEmployee');
     cy.wait('@queryEmployeeAfter')
-    
+
 
     //点击排班栏下的排班项
     // cy.get(
@@ -33,7 +33,7 @@ describe("香港版-排班栏用例集", function() {
 
     cy.wait(1000)//等待前端数据渲染
     cy.get(
-      "div.ant-col-21.right-bottom > div > div > div:nth-child(1) > div:nth-child(1) "
+      'div.ant-col-21.right-bottom > div > div > div:nth-child(1) > div:nth-child(1) '
     ).then($btn => {
       if ($btn.children().hasClass("schedule__add")) {
         //点击新增排班
@@ -69,20 +69,20 @@ describe("香港版-排班栏用例集", function() {
 
     // //加载数据
     // cy.wait('@queryEmployee');
-    
+
     //点击导出按钮
     cy.route('**/admin/attendCalculationDetail/export?**').as('downloadExcel');
     cy.get('.download-box').click();
     //点击确认导出按钮
     cy.get('.ant-modal-confirm-btns > .ant-btn-primary').click()
     cy.wait('@downloadExcel').its('status').should('eq', 200);
-    
+
   });
 
 
   it("判断打卡界面接口返回是否正常", function() {
     cy.server();
-    
+
     //点击考勤栏
     // cy.get(':nth-child(5) > .ant-menu-submenu-title', {
     //   timeout: 10000
@@ -91,11 +91,11 @@ describe("香港版-排班栏用例集", function() {
     // cy.get('.ant-menu-submenu-open > .ant-menu > :nth-child(2)',{
     //   timeout: 10000
     // }).click()
-    
+
     cy.route('**/admin/bizMobileCard?q=&current=1&size=10**').as('queryNormal')
     //跳转打卡数据界面
     cy.visit('http://stg.workoncue.com/attendance/clock_data')
-    
+
     cy.wait('@queryNormal').its('status').should('eq', 200);
     // cy.route('**&mobileCardStatusFilter=**').as('queryError');
     //点击打卡异常数据界面
@@ -107,13 +107,13 @@ describe("香港版-排班栏用例集", function() {
 
   it("进行考勤汇总计算", function() {
     cy.log('跳转考勤汇总计算链接')
-    
+
     cy.server()
     cy.route('**/admin/bizAttendCalculation**').as('getbiz')
 
     cy.visit('http://stg.workoncue.com/attendance/overview')
 
-    
+
     //点击考勤汇总
     // cy.get("ul > li.ant-menu-submenu > ul > li:nth-child(1) > div").click();
     cy.wait('@getbiz')
@@ -131,7 +131,7 @@ describe("香港版-排班栏用例集", function() {
     cy.log('选择第一个员工')
     cy.get("div.field-name__employeeFilter >div>div>ul>li:nth-child(1)").dblclick();
     cy.get(' div.ant-modal-wrap.attendance-filter-modal > div > div.ant-modal-content > div.ant-modal-body > div > div > div > div:nth-child(3) > div.ant-collapse-content.ant-collapse-content-active > div > span > i > svg').click();
-    
+
     cy.log('点击确定按钮')
     cy.get(
       " div.ant-modal-footer > div > button.ant-btn.ant-btn-primary"

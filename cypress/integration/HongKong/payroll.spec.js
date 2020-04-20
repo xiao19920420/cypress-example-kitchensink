@@ -37,7 +37,7 @@ describe('香港版-薪酬栏用例集', function () {
     cy.get('div:nth-child(2) > div.toolbar > button:nth-child(1)', { timeout: 10000 })
 
     //判断运算后界面是否跳转
-    cy.url().should('include','/payroll/payroll-calculation-detail?id=')
+    cy.url().should('include', '/payroll/payroll-calculation-detail?id=')
     //等待运算接口完成
     cy.wait('@payroll_detail').its('status').should('eq', 200)
     //判断列表接口返回内容
@@ -70,7 +70,7 @@ describe('香港版-薪酬栏用例集', function () {
 
     //点击删除按钮
     cy.get('.toolbar > .ant-btn-default').click()
-    cy.route('DELETE','**/payroll/payroll_plan/**').as('delete_payroll')
+    cy.route('DELETE', '**/payroll/payroll_plan/**').as('delete_payroll')
 
     //点击确认按钮
     cy.get('.action-wrapper > .ant-btn-primary').click()
