@@ -23,8 +23,8 @@ describe('内地版-保险福利栏用例集', function () {
     cy.get('div.ant-table-body > table > tbody > tr:nth-child(1)').dblclick()
     cy.wait('@getInsurance')
 
-    //判断供款编号上有内容展示
-    cy.get('#paymentNumber').then((values) => {
+    //判断保险计划上有内容展示
+    cy.get('.ant-select-selection').then((values) => {
       expect(values.html).not.to.be.empty
     })
 

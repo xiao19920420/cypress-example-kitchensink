@@ -90,5 +90,4 @@ Cypress.Commands.add('innerLogin', () => {
     window.localStorage.setItem('tenant_id',
       JSON.stringify(tenantStr))
   })
-  
 })

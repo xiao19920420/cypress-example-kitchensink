@@ -5,12 +5,10 @@ describe('内地版-假期栏用例集', function () {
     cy.innerLogin()
   })
   it('检查假期申请', function () {
-    //点击假期栏
-    // cy.get(':nth-child(6) > .ant-menu-submenu-title > .menu-content', { timeout: 10000 }).click();
     cy.server()
     cy.route('**/leave/holiday/page**').as('getDetail')
     //跳转假期余额URL
-    cy.visit(Cypress.env('base')+'holiday/holiday_application')
+    cy.visit(`${Cypress.env('base')}holiday/holiday_application`)
     cy.wait('@getDetail')
     //点击假期申请
     // cy.get('.ant-menu-submenu-open > .ant-menu > :nth-child(2)').click();

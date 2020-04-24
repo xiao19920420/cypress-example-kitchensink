@@ -28,9 +28,6 @@ describe('香港版-保险福利栏用例集', function () {
     cy.get('#joinDate > div > .ant-calendar-picker-input').then((values) => {
       expect(values.html).not.to.be.empty
     })
-    // cy.get('#paymentNumber').then((values) => {
-    //   expect(values.html).not.to.be.empty
-    // })
 
   })
 })
