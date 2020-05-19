@@ -13,7 +13,8 @@ describe('内地版-员工栏用例集', function () {
     cy.wait('@getEmployee').its('status').should('eq', 200)
 
     //点击新增员工
-    cy.get('.toolbar > :nth-child(2)').click()
+    // cy.get('.toolbar > :nth-child(2)').click()
+    cy.get('.ant-btn-primary').click()
     //输入姓名（身份证）
     cy.get('#englishName').type('NG KE')
     //输入员工编号
