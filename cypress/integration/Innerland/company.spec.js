@@ -8,6 +8,8 @@ describe('内地版-公司栏用例集', function () {
   })
 
   it('编辑公司信息', function () {
+    //增加内地版失败重试
+    this.retries(2);
     cy.server()
     cy.route('**/admin/subscriberInfo/getInfo**').as('getCompany')
     cy.visit(`${Cypress.env('base')}settings/company`)
