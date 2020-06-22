@@ -21,7 +21,7 @@ describe('内地版-公司栏用例集', function () {
     //上传图片
     cy.fixture(fileName).then((fileContent) => {
       //input标签上传图片
-      cy.get('#logo > div > span > input[type=file]').upload({
+      cy.get('#logo > div > span > input[type=file]').attachFile({
         fileContent,
         fileName,
         mimeType: 'image/jpg',

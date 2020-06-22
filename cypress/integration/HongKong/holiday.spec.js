@@ -18,12 +18,12 @@ describe('香港版-假期栏用例集', function () {
 
     //判断日期控件上有内容展示
     cy.get('.ant-calendar-picker-input').then((values) => {
-      expect(values.text).not.to.be.empty
+      expect(values.val()).to.not.be.empty
     })
 
     //判断假期类型上有内容展示
-    cy.get('#holidayType > .ant-select-selection').then((values) => {
-      expect(values.text).not.to.be.empty
+    cy.get('#holidayType > div > div > div.ant-select-selection-selected-value').then((values) => {
+      expect(values.text()).to.not.be.empty
     })
   })
 })
