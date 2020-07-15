@@ -3,6 +3,13 @@
   "pageLoadTimeout": 60000,
   "defaultCommandTimeout":60000,
   "chromeWebSecurity": false,
+  "reporter": "mochawesome",
+  "reporterOptions": {
+    "reportDir": "cypress/results",
+    "overwrite": false,
+    "html": true,
+    "json": false
+  },
   "env": {
     "baseurl": "http://stg.workoncue.com/login?locale=zh_cn",
     "email": "297434556@qq.com",
