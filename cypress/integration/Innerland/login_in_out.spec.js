@@ -7,18 +7,23 @@ describe('内地版-登录登出用例', function () {
 
   it('登录', function () {
     //输入邮箱
-    cy.get('#username').type(Cypress.env('email'))
+    cy.get('#username').type(Cypress.env('IN_Account'))
     //输入密码
-    cy.get('#password').type(Cypress.env('password'))
+    cy.get('#password').type(Cypress.env('IN_Password'))
+    cy.server()
+    cy.route('POST', '**/oauth/token').as('getToken')
+    
     //点击登录
     cy.get('.ant-btn').click()
+    cy.wait('@getToken').its('status').should('eq', 200)
+
   })
 
   it('登出', function () {
     //输入邮箱
-    cy.get('#username').type(Cypress.env('email'))
+    cy.get('#username').type(Cypress.env('IN_Account'))
     //输入密码
-    cy.get('#password').type(Cypress.env('password'))
+    cy.get('#password').type(Cypress.env('IN_Password'))
     //点击登录
     cy.get('.ant-btn').click()
 

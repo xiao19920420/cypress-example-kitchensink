@@ -4,7 +4,7 @@ import 'cypress-file-upload'
 describe('香港版-公司栏用例集', function () {
 
   beforeEach(() => {
-    cy.login()
+    cy.login(Cypress.env('fat_token_api'),Cypress.env('HK_Account'),Cypress.env('HK_Password'))
   })
 
   it('编辑公司信息', function () {

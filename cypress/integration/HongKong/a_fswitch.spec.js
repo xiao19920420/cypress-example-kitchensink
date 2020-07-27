@@ -2,7 +2,7 @@
 
 describe('香港版-切换用例集', function () {
   beforeEach(() => {
-    cy.innerLogin()
+    cy.login(Cypress.env('fat_token_api'),Cypress.env('HK_Account'),Cypress.env('HK_Password'))
   })
   it('切换租户', function () {
     cy.request({

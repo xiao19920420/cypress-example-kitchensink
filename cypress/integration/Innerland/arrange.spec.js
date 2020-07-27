@@ -2,7 +2,7 @@
 
 describe('内地版-排班栏用例集', function () {
   beforeEach(() => {
-    cy.innerLogin()
+    cy.login(Cypress.env('fat_token_api'),Cypress.env('IN_Account'),Cypress.env('IN_Password'))
   })
 
 

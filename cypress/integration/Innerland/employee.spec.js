@@ -2,7 +2,7 @@
 
 describe('内地版-员工栏用例集', function () {
   beforeEach(() => {
-    cy.innerLogin()
+    cy.login(Cypress.env('fat_token_api'),Cypress.env('IN_Account'),Cypress.env('IN_Password'))
   })
 
   it('新增员工', function () {
@@ -104,7 +104,7 @@ describe('内地版-员工栏用例集', function () {
     // }).click();
 
     //输入基本薪酬
-    cy.get('#basicPay > .ant-input-number-input-wrap > .ant-input-number-input').type('1138')
+    cy.get('#basicPay > .ant-input-number-input-wrap > .ant-input-number-input').type('138')
     // cy.get(".ant-input-number-input").type("138");
 
     //点击计薪形式选择框

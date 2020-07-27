@@ -6,18 +6,21 @@
   "reporter": "mochawesome",
   "reporterOptions": {
     "reportDir": "cypress/results",
-    "overwrite": false,
     "html": true,
-    "json": false
+    "json": false,
+    "mochaFile": "results/my-test-output.html"
   },
   "env": {
     "baseurl": "http://stg.workoncue.com/login?locale=zh_cn",
-    "email": "297434556@qq.com",
-    "password": "123456",
     "devurl-innerland": "http://gigaworkdev.tpddns.cn:3003",
     "base": "http://stg.workoncue.com/",
     "devapi": "http://ec2-52-220-188-0.ap-southeast-1.compute.amazonaws.com:8080",
-    "email_inner": "lish@myhr100.com"
+    "email_inner": "lish@myhr100.com",
+    "fat_token_api":"http://ec2-52-220-188-0.ap-southeast-1.compute.amazonaws.com:8080/auth/oauth/token",
+    "HK_Account":"297434556@qq.com",
+    "HK_Password":"123456",
+    "IN_Account":"lish@myhr100.com",
+    "IN_Password":"123456"
 
   }
 }

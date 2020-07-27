@@ -2,7 +2,7 @@
 
 describe('内地版-基础切换用例集', function () {
   beforeEach(() => {
-    cy.innerLogin()
+    cy.login(Cypress.env('fat_token_api'),Cypress.env('IN_Account'),Cypress.env('IN_Password'))
   })
   it('切换租户', function () {
     cy.request({

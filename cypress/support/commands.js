@@ -23,9 +23,11 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
-Cypress.Commands.add('login', () => {
+Cypress.Commands.add('login', (getUrl,acc,pwd) => {
+  console.log('开始测试')
+  console.log(getUrl)
   cy.request({
-    url: 'http://ec2-52-220-188-0.ap-southeast-1.compute.amazonaws.com:8080/auth/oauth/token',
+    url: getUrl,
     method: 'POST',
     form: true,
     headers: {
@@ -34,9 +36,9 @@ Cypress.Commands.add('login', () => {
     },
     body: {
       grant_type: 'password',
-      password: 123456,
+      password: pwd,
       scope: 'app',
-      username: '297434556@qq.com',
+      username: acc,
     },
   }).then((response) => {
     const time = new Date().getTime()

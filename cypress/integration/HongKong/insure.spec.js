@@ -2,7 +2,7 @@
 
 describe('香港版-保险福利栏用例集', function () {
   beforeEach(() => {
-    cy.login()
+    cy.login(Cypress.env('fat_token_api'),Cypress.env('HK_Account'),Cypress.env('HK_Password'))
   })
 
   it('保险福利主流程', function () {
@@ -14,6 +14,8 @@ describe('香港版-保险福利栏用例集', function () {
 
     cy.server()
     cy.route('**/payroll/insurance_benefits_record/**').as('getInsurance')
+    cy.route('**/admin/dictionarys/code/sys_gender').as('getData')
+
     //点击档案
     cy.get(':nth-child(2) > .menu-content > .menu-content__title').click()
     cy.wait('@getInsurance')
@@ -23,7 +25,7 @@ describe('香港版-保险福利栏用例集', function () {
     cy.get('div.ant-table-body > table > tbody > tr:nth-child(1)').dblclick()
     cy.wait('@getInsurance')
     // cy.contains('employee,li').dblclick()
-
+    cy.wait('@getData')
     //点击编辑按钮
     cy.get('.ant-card-extra > div > a').click()
     //判断参加日期上有内容展示
