@@ -2,14 +2,15 @@
 
 describe('香港版-保险福利栏用例集', function () {
   beforeEach(() => {
-    cy.login(Cypress.env('fat_token_api'),Cypress.env('HK_Account'),Cypress.env('HK_Password'))
+    cy.login(Cypress.env('token_api'),Cypress.env('HK_Account'),Cypress.env('HK_Password'))
   })
 
   it('保险福利主流程', function () {
     this.retries(2)
 
     //点击保险福利栏
-    cy.visit('http://stg.workoncue.com/benefit/benefit-overview')
+    cy.visit(`${Cypress.env('base')}benefit/benefit-overview`)
+
     // cy.get(':nth-child(8) > .ant-menu-submenu-title',{ timeout: 15000 }).click();
 
     cy.server()

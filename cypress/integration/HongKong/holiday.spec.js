@@ -2,13 +2,14 @@
 
 describe('香港版-假期栏用例集', function () {
   beforeEach(() => {
-    cy.login(Cypress.env('fat_token_api'),Cypress.env('HK_Account'),Cypress.env('HK_Password'))
+    cy.login(Cypress.env('token_api'),Cypress.env('HK_Account'),Cypress.env('HK_Password'))
   })
   it('检查假期申请', function () {
     cy.server()
     cy.route('**/leave/holiday/page**').as('getDetail')
     //跳转假期余额URL
-    cy.visit('http://stg.workoncue.com/holiday/holiday_application')
+    cy.visit(`${Cypress.env('base')}holiday/holiday_application`)
+
     cy.wait('@getDetail')
 
     //点击假期申请第一项

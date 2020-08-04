@@ -1,8 +1,8 @@
 /// <reference types="Cypress" />
 
-describe('内地版-员工栏用例集', function () {
+describe('澳门版-员工栏用例集', function () {
   beforeEach(() => {
-    cy.login(Cypress.env('token_api'),Cypress.env('HK_Account'),Cypress.env('HK_Password'))
+    cy.login(Cypress.env('token_api'),Cypress.env('IN_Account'),Cypress.env('IN_Password'))
   })
 
   it('新增员工', function () {
@@ -11,6 +11,12 @@ describe('内地版-员工栏用例集', function () {
     cy.route('**/admin/employee?q=**').as('getEmployee')
     cy.visit(`${Cypress.env('base')}employee`)
     cy.wait('@getEmployee').its('status').should('eq', 200)
+
+    //判断当前登录的租户
+    cy.get('div.ant-row-flex.ant-row-flex-center > div.company-info.ant-row > div').then((values) => {
+      expect(values.text()).to.equal(Cypress.env('MA_Tenant_Name'))
+    })
+    // cy.get('澳门版')
 
     //点击新增员工
     // cy.get('.toolbar > :nth-child(2)').click()

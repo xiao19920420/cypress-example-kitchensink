@@ -2,14 +2,14 @@
 
 describe('香港版-员工栏用例集', function () {
   beforeEach(() => {
-    cy.login(Cypress.env('fat_token_api'),Cypress.env('HK_Account'),Cypress.env('HK_Password'))
+    cy.login(Cypress.env('token_api'),Cypress.env('HK_Account'),Cypress.env('HK_Password'))
   })
 
   it('新增员工', function () {
     this.retries(2)
     cy.server()
     cy.route('**/admin/employee?q=**').as('getEmployee')
-    cy.visit('http://stg.workoncue.com/employee')
+    cy.visit(`${Cypress.env('base')}employee`)
     cy.wait('@getEmployee').its('status').should('eq', 200)
 
     //点击新增员工
@@ -116,8 +116,9 @@ describe('香港版-员工栏用例集', function () {
     // ).click();
 
     //点击薪酬规则选择框
-    cy.route('**payroll/payroll_regulation/list?**').as('getPayrollRegulation')
+    cy.route('**/payroll_regulation/list?**').as('getPayrollRegulation')
     cy.get('#payrollRegulationId > .ant-select-selection').click()
+    cy.wait(500)
     cy.wait('@getPayrollRegulation')
     //点击第一种薪酬规则
     cy.get('div.field-name__payrollRegulationId>div>ul>li:nth-child(1)', {
@@ -137,7 +138,7 @@ describe('香港版-员工栏用例集', function () {
     cy.get('.ant-modal-footer > div > .ant-btn-primary').click()
     cy.wait('@fire').its('status').should('eq', 200)
 
-    cy.route('**admin/employee**').as('deleteEmployee')
+    cy.route('DELETE','**/admin/employee/**').as('deleteEmployee')
     //新增员工之后选择删除
     cy.get('.toolbar > .ant-btn-default').click()
 

@@ -1,0 +1,29 @@
+{
+  "projectId": "u98721",
+  "pageLoadTimeout": 60000,
+  "defaultCommandTimeout":60000,
+  "chromeWebSecurity": false,
+  "reporter": "mochawesome",
+  "reporterOptions": {
+    "reportDir": "cypress/results",
+    "html": true,
+    "json": false,
+    "mochaFile": "results/my-test-output.html"
+  },
+  "env": {
+    "base": "http://stg.workoncue.com/",
+    "baseapi": "http://ec2-52-220-188-0.ap-southeast-1.compute.amazonaws.com:8080",
+    "token_api":"http://ec2-52-220-188-0.ap-southeast-1.compute.amazonaws.com:8080/auth/oauth/token",
+    "HK_Account":"297434556@qq.com",
+    "HK_Password":"123456",
+    "IN_Account":"2684986956@qq.com",
+    "IN_Password":"123456",
+    "HK_Tenant_ID":"0031b79afddb2ab5268349d7f82f0065",
+    "IN_Tenant_ID":"172766063852b334ad73671082cf1243",
+    "MA_Tenant_ID":"641084c272909e60ebccc635a7c1301d",
+    "MA_Tenant_Name":" elephant-澳门-new ",
+    "HK_Tenant_Name":" elephant ",
+    "IN_Tenant_Name":" elephant_内地test "
+
+  }
+}

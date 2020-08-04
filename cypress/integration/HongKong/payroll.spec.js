@@ -2,14 +2,15 @@
 
 describe('香港版-薪酬栏用例集', function () {
   beforeEach(() => {
-    cy.login(Cypress.env('fat_token_api'),Cypress.env('HK_Account'),Cypress.env('HK_Password'))
+    cy.login(Cypress.env('token_api'),Cypress.env('HK_Account'),Cypress.env('HK_Password'))
   })
 
   it('薪酬运算', function () {
     this.retries(2);
     // Cypress.config('chromeWebSecurity',false);
     //薪酬运算的url
-    cy.visit('http://stg.workoncue.com/payroll/payroll-calculation')
+    cy.visit(`${Cypress.env('base')}payroll/payroll-calculation`)
+
     //判断url的改变
     cy.url().should('include', '/payroll/payroll-calculation')
     //点击新增运算

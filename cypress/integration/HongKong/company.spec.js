@@ -4,24 +4,21 @@ import 'cypress-file-upload'
 describe('香港版-公司栏用例集', function () {
 
   beforeEach(() => {
-    cy.login(Cypress.env('fat_token_api'),Cypress.env('HK_Account'),Cypress.env('HK_Password'))
+    cy.login(Cypress.env('token_api'),Cypress.env('HK_Account'),Cypress.env('HK_Password'))
   })
 
   it('编辑公司信息', function () {
     cy.server()
     cy.route('**/admin/subscriberInfo/getInfo**').as('getCompany')
-    cy.visit('http://stg.workoncue.com/settings/company')
+    cy.log('跳转公司栏')
+    cy.visit(`${Cypress.env('base')}settings/company`)
+
     cy.wait('@getCompany')
-    // //点击公司栏
-    // cy.get(':nth-child(2) > .ant-menu-submenu-title > .menu-content > .menu-content__title').click()
-    // //点击公司tab
-    // cy.get('.ant-menu-submenu-open > .ant-menu > :nth-child(1) > .menu-content > .menu-content__title').click()
-    // cy.wait(1000)
 
     cy.route('POST', '**/admin/file/**').as('upload')
-    const fileName = 'my_logo.jpg'
+    const fileName = 'my_logo.png'
 
-    //上传图片
+    cy.log('上传图片')
     cy.fixture(fileName).then((fileContent) => {
       //input标签上传图片
       cy.get('#logo > div > span > input[type=file]').attachFile({
@@ -35,9 +32,9 @@ describe('香港版-公司栏用例集', function () {
     cy.wait('@upload').its('status').should('eq', 200)
 
     cy.route('PUT', '**/admin/tenants**').as('save')
-    //输入商业登记号,先选中全部再输入内容
+    cy.log('输入商业登记号,先选中全部再输入内容')
     cy.get('#businessRegistrationNumber').type('{selectall}').type(12345678)
-    //点击保存按钮
+    cy.log('点击保存按钮')
     cy.contains('保 存').click()
     // cy.get(':nth-child(4) > .ant-btn').click();
     cy.wait('@save').its('status').should('eq', 200)
@@ -46,11 +43,12 @@ describe('香港版-公司栏用例集', function () {
   it('新增部门', function () {
     cy.server()
     cy.route('**/admin/department?q=**').as('getDepartment')
-    //跳转部门链接
-    cy.visit('http://stg.workoncue.com/department')
+    cy.log('跳转部门链接')
+    cy.visit(`${Cypress.env('base')}department`)
+
     cy.wait('@getDepartment').its('status').should('eq', 200)
 
-    //新增部门
+    cy.log('新增部门')
     cy.get('.toolbar > .ant-btn').click()
     //输入新增部门名称
     cy.get('#name').type(`新测试${Math.floor(Math.random() * 10000 + 1)}部门`)
@@ -62,12 +60,12 @@ describe('香港版-公司栏用例集', function () {
   })
 
   it('新增职位', function () {
-    //跳转职位链接
+    cy.log('跳转职位链接')
     cy.server()
     cy.route('**admin/position?q=&**').as('getPosition')
-    cy.visit('http://stg.workoncue.com/position')
+    cy.visit(`${Cypress.env('base')}position`)
 
-    //点击新增职位
+    cy.log('新增职位')
     cy.get('.toolbar > .ant-btn').click()
     //输入新增职位名称
     cy.get('#name').type(`新测试${Math.floor(Math.random() * 10000 + 1)}岗位`)
@@ -79,7 +77,7 @@ describe('香港版-公司栏用例集', function () {
 
   it('新增办公打卡点', function () {
     cy.request({
-      url: 'http://ec2-52-220-188-0.ap-southeast-1.compute.amazonaws.com:8080/auth/oauth/token',
+      url: `${Cypress.env('token_api')}`,
       method: 'POST',
       form: true,
       headers: {
@@ -88,9 +86,9 @@ describe('香港版-公司栏用例集', function () {
       },
       body: {
         grant_type: 'password',
-        password: 123456,
+        password: Cypress.env('HK_Password'),
         scope: 'app',
-        username: '297434556@qq.com',
+        username: Cypress.env('HK_Account'),
       },
     }).then((response) => {
 
@@ -98,7 +96,7 @@ describe('香港版-公司栏用例集', function () {
       let tenant_id = response.body.tenant_id
 
       cy.request({
-        url: 'http://ec2-52-220-188-0.ap-southeast-1.compute.amazonaws.com:8080/admin/attendanceAddress',
+        url: Cypress.env('baseapi')+'/admin/attendanceAddress',
         method: 'POST',
         // form:true,
         headers: {
@@ -119,14 +117,17 @@ describe('香港版-公司栏用例集', function () {
     }).should((response) => {
       expect(response).to.have.property('headers')
       expect(response).to.have.property('duration')
+      expect(response.body.message).to.equal('Code or Name already exists')
+
     })
   })
 
   it('新增成本中心', function () {
-    //跳转成本中心链接
+    cy.log('跳转成本中心链接')
     cy.server()
     cy.route('**/admin/biz_cost_center/page**').as('getCenter')
-    cy.visit('http://stg.workoncue.com/cost-center')
+    cy.visit(`${Cypress.env('base')}cost-center`)
+
     cy.wait('@getCenter').its('status').should('eq', 200)
 
     //点击添加成本中心

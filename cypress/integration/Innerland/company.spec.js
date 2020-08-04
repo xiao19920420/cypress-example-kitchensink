@@ -4,7 +4,7 @@ import 'cypress-file-upload'
 describe('内地版-公司栏用例集', function () {
 
   beforeEach(() => {
-    cy.login(Cypress.env('fat_token_api'),Cypress.env('IN_Account'),Cypress.env('IN_Password'))
+    cy.login(Cypress.env('token_api'),Cypress.env('HK_Account'),Cypress.env('HK_Password'))
   })
 
   it('编辑公司信息', function () {
@@ -78,7 +78,7 @@ describe('内地版-公司栏用例集', function () {
 
   it('新增办公打卡点', function () {
     cy.request({
-      url: `${Cypress.env('devapi')}/auth/oauth/token`,
+      url: `${Cypress.env('token_api')}`,
       method: 'POST',
       form: true,
       headers: {
@@ -87,9 +87,9 @@ describe('内地版-公司栏用例集', function () {
       },
       body: {
         grant_type: 'password',
-        password: 123456,
+        password: Cypress.env('HK_Password'),
         scope: 'app',
-        username: '297434556@qq.com',
+        username: Cypress.env('HK_Account'),
       },
     }).then((response) => {
 
@@ -97,7 +97,7 @@ describe('内地版-公司栏用例集', function () {
       let tenant_id = response.body.tenant_id
 
       cy.request({
-        url: `${Cypress.env('devapi')}/admin/attendanceAddress`,
+        url: Cypress.env('baseapi')+'/admin/attendanceAddress',
         method: 'POST',
         // form:true,
         headers: {
@@ -118,6 +118,8 @@ describe('内地版-公司栏用例集', function () {
     }).should((response) => {
       expect(response).to.have.property('headers')
       expect(response).to.have.property('duration')
+      expect(response.body.message).to.equal('Code or Name already exists')
+
     })
   })
 

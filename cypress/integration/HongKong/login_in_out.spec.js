@@ -1,15 +1,17 @@
 describe('香港版-登录登出用例集', function () {
   beforeEach(() => {
-    cy.visit(Cypress.env('baseurl'))
+    cy.visit(Cypress.env('base'))
   })
 
   it('登录', function () {
+    cy.server()
+    cy.route('POST', '**/oauth/token').as('getToken')
+    
     //输入邮箱
     cy.get('#username').type(Cypress.env('HK_Account'))
     //输入密码
     cy.get('#password').type(Cypress.env('HK_Password'))
-    cy.server()
-    cy.route('POST', '**/oauth/token').as('getToken')
+    
     
     //点击登录
     cy.get('.ant-btn').click()
@@ -22,8 +24,18 @@ describe('香港版-登录登出用例集', function () {
     cy.get('#username').type(Cypress.env('HK_Account'))
     //输入密码
     cy.get('#password').type(Cypress.env('HK_Password'))
+
+    cy.server()
+    cy.route('**/admin/subscriberInfo/getInfo').as('getInfo')
+
     //点击登录
     cy.get('.ant-btn').click()
+    
+    cy.wait('@getInfo')
+    //判断当前登录的租户
+    cy.get('div.ant-row-flex.ant-row-flex-center > div.company-info.ant-row > div').then((values) => {
+      expect(values.text()).to.equal(Cypress.env('HK_Tenant_Name'))
+    })
 
     //点击个人头像
     cy.get('a.ant-dropdown-trigger > .ant-avatar').click()

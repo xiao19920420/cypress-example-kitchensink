@@ -1,12 +1,9 @@
 /// <reference types="Cypress" />
 
 describe('内地版-基础切换用例集', function () {
-  beforeEach(() => {
-    cy.login(Cypress.env('fat_token_api'),Cypress.env('IN_Account'),Cypress.env('IN_Password'))
-  })
   it('切换租户', function () {
     cy.request({
-      url: `${Cypress.env('devapi')}/auth/oauth/token`,
+      url: `${Cypress.env('token_api')}`,
       method: 'POST',
       form: true,
       headers: {
@@ -15,9 +12,9 @@ describe('内地版-基础切换用例集', function () {
       },
       body: {
         grant_type: 'password',
-        password: 123456,
+        password: Cypress.env('HK_Password'),
         scope: 'app',
-        username: 'lish@myhr100.com',
+        username: Cypress.env('HK_Account'),
       },
     }).then((response) => {
 
@@ -25,7 +22,7 @@ describe('内地版-基础切换用例集', function () {
       let tenant_id = response.body.tenant_id
 
       cy.request({
-        url: `${Cypress.env('devapi')}/admin/tenants/switch/16827cc9c56231793f0fcb29d2a65e7b`,
+        url: `${Cypress.env('baseapi')}/admin/tenants/switch/`+Cypress.env('IN_Tenant_ID'),
         method: 'GET',
         // form:true,
         headers: {
@@ -37,6 +34,8 @@ describe('内地版-基础切换用例集', function () {
     }).should((response) => {
       expect(response).to.have.property('headers')
       expect(response).to.have.property('duration')
+      cy.log('判断返回信息')
+      expect(response.body.message).to.equal('success')
     })
   })
 })

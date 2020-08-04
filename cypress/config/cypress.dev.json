@@ -1,0 +1,29 @@
+{
+  "projectId": "u98721",
+  "pageLoadTimeout": 60000,
+  "defaultCommandTimeout":60000,
+  "chromeWebSecurity": false,
+  "reporter": "mochawesome",
+  "reporterOptions": {
+    "reportDir": "cypress/results",
+    "html": true,
+    "json": false,
+    "mochaFile": "results/my-test-output.html"
+  },
+  "env": {
+    "base": "http://192.168.0.2:3000/",
+    "baseapi": "http://192.168.0.2:3000/api",
+    "token_api":"http://192.168.0.2:3000/api/auth/oauth/token",
+    "HK_Account":"297434556@qq.com",
+    "HK_Password":"123456",
+    "IN_Account":"lish@myhr100.com",
+    "IN_Password":"123456",
+    "HK_Tenant_ID":"0031b79afddb2ab5268349d7f82f0065",
+    "IN_Tenant_ID":"e57b34801df2b047f96262d88b1bc1eb",
+    "MA_Tenant_ID":"398f5f6331fba04f3b46003824757ccc",
+    "MA_Tenant_Name":" 0522-2澳门版 ",
+    "HK_Tenant_Name":" elephant ",
+    "IN_Tenant_Name":" elephant_内地0701 "
+
+  }
+}

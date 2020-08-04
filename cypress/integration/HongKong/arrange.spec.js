@@ -2,41 +2,29 @@
 
 describe('香港版-排班栏用例集', function () {
   beforeEach(() => {
-    cy.login(Cypress.env('fat_token_api'),Cypress.env('HK_Account'),Cypress.env('HK_Password'))
+    cy.login(Cypress.env('token_api'),Cypress.env('HK_Account'),Cypress.env('HK_Password'))
   })
 
   it('新增排班', function () {
     this.retries(2)
 
-    //点击排班栏
-    // cy.get(
-    //   ":nth-child(4) > .ant-menu-submenu-title > .menu-content > .menu-content__title",
-    //   { timeout: 10000 }
-    // ).click();
-
-    //通过链接跳转排班界面
     cy.server()
     cy.route('**/admin/**').as('queryEmployee')
     cy.route('POST', '**/attendCalculationDetail/**').as('queryEmployeeAfter')
-    cy.visit('http://stg.workoncue.com/schedule')
+    cy.log('通过链接跳转排班界面')
+    cy.visit(`${Cypress.env('base')}schedule`)
+
     //加载数据
     cy.wait('@queryEmployee')
     cy.wait('@queryEmployeeAfter')
 
-
-    //点击排班栏下的排班项
-    // cy.get(
-    //   ".ant-menu-submenu-open > .ant-menu > :nth-child(1) > .menu-content > .menu-content__title", {
-    //     timeout: 10000
-    //   }
-    // ).click();
 
     cy.wait(1000)//等待前端数据渲染
     cy.get(
       'div.ant-col-21.right-bottom > div > div > div:nth-child(1) > div:nth-child(1) '
     ).then(($btn) => {
       if ($btn.children().hasClass('schedule__add')) {
-        //点击新增排班
+        cy.log('新增排班')
         cy.get(
           'div > div > div:nth-child(1) > div:nth-child(1) > div.schedule__add'
         ).click()
@@ -70,7 +58,7 @@ describe('香港版-排班栏用例集', function () {
     // //加载数据
     // cy.wait('@queryEmployee');
 
-    //点击导出按钮
+    cy.log('点击排班导出')
     cy.route('**/admin/attendCalculationDetail/export?**').as('downloadExcel')
     cy.get('.download-box').click()
     //点击确认导出按钮
@@ -93,8 +81,8 @@ describe('香港版-排班栏用例集', function () {
     // }).click()
 
     cy.route('**/admin/bizMobileCard?q=&current=1&size=10**').as('queryNormal')
-    //跳转打卡数据界面
-    cy.visit('http://stg.workoncue.com/attendance/clock_data')
+    cy.log('跳转打卡数据界面')
+    cy.visit(`${Cypress.env('base')}attendance/clock_data`)
 
     cy.wait('@queryNormal').its('status').should('eq', 200)
     // cy.route('**&mobileCardStatusFilter=**').as('queryError');
@@ -111,7 +99,7 @@ describe('香港版-排班栏用例集', function () {
     cy.server()
     cy.route('**/admin/bizAttendCalculation**').as('getbiz')
 
-    cy.visit('http://stg.workoncue.com/attendance/overview')
+    cy.visit(`${Cypress.env('base')}attendance/overview`)
 
 
     //点击考勤汇总
