@@ -23,6 +23,23 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add(
+  "attach_img",
+  {
+    prevSubject: "element",
+  },
+  (input, fileName, fileType) => {
+    cy.fixture(fileName).then((content) => {
+      const blob = Cypress.Blob.base64StringToBlob(content, fileType);
+      const testFile = new File([blob], fileName);
+      const dataTransfer = new DataTransfer();
+      dataTransfer.items.add(testFile);
+      input[0].files = dataTransfer.files;
+      return input;
+    });
+  }
+);
+
 Cypress.Commands.add('login', (getUrl,acc,pwd) => {
   console.log('开始测试')
   console.log(getUrl)

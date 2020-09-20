@@ -4,6 +4,10 @@
   "defaultCommandTimeout":60000,
   "chromeWebSecurity": false,
   "reporter": "mochawesome",
+  "retries": {
+    "runMode": 2,
+    "openMode": 2
+  },
   "reporterOptions": {
     "reportDir": "cypress/results",
     "html": true,

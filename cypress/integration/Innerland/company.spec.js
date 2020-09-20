@@ -9,14 +9,13 @@ describe('内地版-公司栏用例集', function () {
 
   it('编辑公司信息', function () {
     //增加内地版失败重试
-    this.retries(2);
     cy.server()
     cy.route('**/admin/subscriberInfo/getInfo**').as('getCompany')
     cy.visit(`${Cypress.env('base')}settings/company`)
     cy.wait('@getCompany')
 
     cy.route('POST', '**/admin/file/**').as('upload')
-    const fileName = 'my_logo.jpg'
+    const fileName = 'my_logo.png'
 
     //上传图片
     cy.fixture(fileName).then((fileContent) => {
@@ -43,13 +42,19 @@ describe('内地版-公司栏用例集', function () {
   it('新增部门', function () {
     cy.server()
     cy.route('**/admin/department?q=**').as('getDepartment')
-    //跳转部门链接
+    cy.log('跳转部门链接')
     cy.visit(`${Cypress.env('base')}department`)
 
     cy.wait('@getDepartment').its('status').should('eq', 200)
-
-    //新增部门
-    cy.get('.toolbar > .ant-btn').click()
+    cy.log('新增部门')
+    // cy.get('.toolbar > .ant-btn').click()
+    cy.route('**/admin/department**').as('getList')
+    cy.get('.ant-btn-primary').click()
+    //选择父级部门
+    cy.get('#parentId > .ant-select-selection > .ant-select-selection__rendered').click()
+    cy.wait('@getList').its('status').should('eq', 200)
+    // cy.get('body > div:nth-child(14) > div > div > div > div > ul > li:nth-child(1)').click()
+    // cy.contains('新测试9187部门').click()
     //输入新增部门名称
     cy.get('#name').type(`新测试${Math.floor(Math.random() * 10000 + 1)}部门`)
     cy.route('POST', '**/admin/department**').as('saveDepartment')

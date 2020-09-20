@@ -6,7 +6,6 @@ describe('内地版-保险福利栏用例集', function () {
   })
 
   it('保险福利主流程', function () {
-    // this.retries(2);
 
     //点击保险福利栏
     cy.visit(`${Cypress.env('base')}benefit/benefit-overview`)
@@ -22,10 +21,10 @@ describe('内地版-保险福利栏用例集', function () {
     cy.wait(1000)//等待前端数据渲染
     cy.get('div.ant-table-body > table > tbody > tr:nth-child(1)').dblclick()
     cy.wait('@getInsurance')
-
     //点击编辑按钮
-    cy.get('.ant-card-extra > div > a').click()
+    cy.wait(1500)
 
+    // cy.get('.ant-card-extra > :nth-child(1) > div > :nth-child(1)')
    //判断姓名上有内容展示
     cy.get('#englishName').then((values) => {
       expect(values.val()).to.not.be.empty

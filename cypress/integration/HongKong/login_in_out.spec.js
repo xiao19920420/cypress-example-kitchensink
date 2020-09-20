@@ -14,9 +14,9 @@ describe('香港版-登录登出用例集', function () {
     
     
     //点击登录
-    cy.get('.ant-btn').click()
+    cy.contains('登 录').click()
     cy.wait('@getToken').its('status').should('eq', 200)
-
+    
   })
 
   it('登出', function () {
@@ -29,7 +29,7 @@ describe('香港版-登录登出用例集', function () {
     cy.route('**/admin/subscriberInfo/getInfo').as('getInfo')
 
     //点击登录
-    cy.get('.ant-btn').click()
+    cy.contains('登 录').click()
     
     cy.wait('@getInfo')
     //判断当前登录的租户

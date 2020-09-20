@@ -16,7 +16,7 @@ describe('内地版-登录登出用例', function () {
     
     
     //点击登录
-    cy.get('.ant-btn').click()
+    cy.contains('登 录').click()
     cy.wait('@getToken').its('status').should('eq', 200)
 
   })
@@ -31,7 +31,7 @@ describe('内地版-登录登出用例', function () {
     cy.route('**/admin/subscriberInfo/getInfo').as('getInfo')
 
     //点击登录
-    cy.get('.ant-btn').click()
+    cy.contains('登 录').click()
     
     cy.wait('@getInfo')
     //判断当前登录的租户

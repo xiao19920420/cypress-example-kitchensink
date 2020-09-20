@@ -6,7 +6,6 @@ describe('香港版-员工栏用例集', function () {
   })
 
   it('新增员工', function () {
-    this.retries(2)
     cy.server()
     cy.route('**/admin/employee?q=**').as('getEmployee')
     cy.visit(`${Cypress.env('base')}employee`)

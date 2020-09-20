@@ -6,8 +6,6 @@ describe('香港版-排班栏用例集', function () {
   })
 
   it('新增排班', function () {
-    this.retries(2)
-
     cy.server()
     cy.route('**/admin/**').as('queryEmployee')
     cy.route('POST', '**/attendCalculationDetail/**').as('queryEmployeeAfter')

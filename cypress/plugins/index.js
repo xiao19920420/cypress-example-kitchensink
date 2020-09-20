@@ -34,7 +34,7 @@ function getConfigurationByFile (file) {
 // plugins file
 module.exports = (on, config) => {
   // 指定一个环境配置，如没有指定，则使用cypress.dev.json
-  const file = config.env.configFile || 'dev'
+  const file = config.env.configFile || 'fat'
   console.log('开始测试')
   console.log(file)
   return getConfigurationByFile(file)

@@ -7,8 +7,6 @@ describe('内地版-排班栏用例集', function () {
 
 
   it('新增排班', function () {
-    this.retries(2)
-
     //点击排班栏
     // cy.get(
     //   ":nth-child(4) > .ant-menu-submenu-title > .menu-content > .menu-content__title",

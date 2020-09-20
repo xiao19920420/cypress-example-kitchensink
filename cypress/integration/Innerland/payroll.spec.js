@@ -6,7 +6,6 @@ describe('内地版-薪酬栏用例集', function () {
   })
 
   it('薪酬运算', function () {
-    // this.retries(2);
     // Cypress.config('chromeWebSecurity',false);
     //薪酬运算的url
     cy.visit(`${Cypress.env('base')}payroll/payroll-calculation`)
