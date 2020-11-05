@@ -68,7 +68,7 @@
     "ajv": "6.12.3",
     "babel-eslint": "7.2.3",
     "colon-names": "1.0.0",
-    "cypress": "5.0.0",
+    "cypress": "5.5.0",
     "cypress-file-upload": "4.0.7",
     "eslint": "4.0.0",
     "eslint-plugin-cypress": "2.8.1",

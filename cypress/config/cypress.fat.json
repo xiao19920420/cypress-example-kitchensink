@@ -11,9 +11,9 @@
     "mochaFile": "results/my-test-output.html"
   },
   "env": {
-    "base": "http://stg.workoncue.com/",
-    "baseapi": "http://ec2-52-220-188-0.ap-southeast-1.compute.amazonaws.com:8080",
-    "token_api":"http://ec2-52-220-188-0.ap-southeast-1.compute.amazonaws.com:8080/auth/oauth/token",
+    "base": "https://stg.workoncue.com/",
+    "baseapi": "https://server.workoncue.com",
+    "token_api":"https://server.workoncue.com/auth/oauth/token",
     "HK_Account":"297434556@qq.com",
     "HK_Password":"123456",
     "IN_Account":"2684986956@qq.com",
