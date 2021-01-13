@@ -63,7 +63,7 @@ context('Actions', () => {
       .next().should('contain', 'Your form has been submitted!')
   })
 
-  it('.click() - click on a DOM element', () => {
+  it.skip('.click() - click on a DOM element', () => {
     // https://on.cypress.io/click
     cy.get('.action-btn').click()
 

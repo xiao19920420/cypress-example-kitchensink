@@ -1,5 +1,6 @@
 {
   "projectId": "u98721",
+  "retries": 1,
   "pageLoadTimeout": 60000,
   "defaultCommandTimeout":60000,
   "chromeWebSecurity": false,
@@ -11,19 +12,19 @@
     "mochaFile": "results/my-test-output.html"
   },
   "env": {
-    "base": "https://stg.workoncue.com/",
-    "baseapi": "https://server.workoncue.com",
-    "token_api":"https://server.workoncue.com/auth/oauth/token",
+    "base": "https://hrm.workstem.com/",
+    "baseapi": "https://server.workstem.com",
+    "token_api":"https://server.workstem.com/auth/oauth/token",
     "HK_Account":"297434556@qq.com",
     "HK_Password":"123456",
-    "IN_Account":"2684986956@qq.com",
+    "IN_Account":"297434556@qq.com",
     "IN_Password":"123456",
-    "HK_Tenant_ID":"0031b79afddb2ab5268349d7f82f0065",
-    "IN_Tenant_ID":"172766063852b334ad73671082cf1243",
-    "MA_Tenant_ID":"641084c272909e60ebccc635a7c1301d",
-    "MA_Tenant_Name":" elephant-澳门-new ",
-    "HK_Tenant_Name":" elephant ",
-    "IN_Tenant_Name":" elephant_内地test "
-
+    "HK_Tenant_ID":"71815da3a118a35362cee8728ed92192",
+    "IN_Tenant_ID":"1f7b4a1390c5c75584abd48bdb8ff184",
+    "MA_Tenant_ID":"e36fcd1f92a7b5400b3936af4a8d6d4c",
+    "MA_Tenant_Name":" elephant-澳门版本 ",
+    "HK_Tenant_Name":" alan ",
+    "IN_Tenant_Name":" elephant-内地版本 "
+                       
   }
 }
